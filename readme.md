@@ -48,8 +48,14 @@ Buka URL yang muncul di terminal (biasanya `http://localhost:8501`).
 
 ---
 
+## Akses Dashboard
+Dashboard ini telah dideploy ke **Streamlit Cloud** dan dapat diakses melalui tautan berikut:
+url : [https://bikesdataset.streamlit.app/](https://bikesdataset.streamlit.app/)
+
+---
+
 ## Deployment
-Jika ingin mendeploy dashboard ke **Streamlit Cloud**:
+Berikut adalah cara mendeploy dashboard ke **Streamlit Cloud**:
 1. Push folder proyek ke repository GitHub.
 2. Hubungkan repository dengan **Streamlit Cloud**.
 3. Deploy dashboard dan simpan tautan di file `url.txt`.
