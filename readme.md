@@ -65,7 +65,6 @@ Jika ingin mendeploy dashboard ke **Streamlit Cloud**:
 ### Tools dan Library
 Proyek ini menggunakan tools dan library berikut:
 - **Pandas**: Untuk manipulasi dan analisis data.
-- **NumPy**: Untuk operasi numerik.
 - **Matplotlib & Seaborn**: Untuk visualisasi data.
 - **Streamlit**: Untuk membuat dashboard interaktif.
 
