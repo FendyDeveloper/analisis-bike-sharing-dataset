@@ -13,7 +13,7 @@ st.set_page_config(
 # Load dataset
 @st.cache_data
 def load_data():
-    data = pd.read_csv("dashboard\main_hour.csv")
+    data = pd.read_csv("dashboard/main_hour.csv")
     return data
 
 data = load_data()
