@@ -39,7 +39,7 @@ pip install -r requirements.txt
 ### 3. Jalankan Dashboard
 Setelah semua dependencies terinstal, jalankan dashboard menggunakan perintah berikut:
 ```bash
-streamlit run dashboard.py
+streamlit run dashboard/dashboard.py
 ```
 
 ### 4. Akses Dashboard

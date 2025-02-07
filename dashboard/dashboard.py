@@ -20,7 +20,7 @@ data = load_data()
 
 # Judul Dashboard
 st.title("Dashboard Analisis Penggunaan Sepeda Berbagi 🚲")
-st.write("Dashboard ini menampilkan analisis pola penggunaan sepeda berbagi berdasarkan musim, cuaca, dan temperatur.")
+st.write("Dashboard ini menampilkan analisis pola penggunaan sepeda berbagi berdasarkan musim dan cuaca")
 
 # Sidebar untuk filter
 st.sidebar.header("📊 Filter Data")
@@ -77,12 +77,24 @@ with left_column:
     st.subheader("📊 Penggunaan Berdasarkan Musim")
     season_analysis = filtered_data.groupby('season')['cnt'].mean().reset_index()
     fig, ax = plt.subplots(figsize=(10, 6))
-    sns.barplot(data=season_analysis, x='season', y='cnt', palette="viridis", ax=ax)
-    ax.set_title("Rata-Rata Penggunaan per Musim")
-    ax.set_xlabel("")
-    ax.set_ylabel("Rata-Rata Jumlah Pengguna")
-    ax.set_xticks(range(len(season_labels)))
-    ax.set_xticklabels([season_labels[i] for i in sorted(season_labels.keys())], rotation=45)
+
+    # Cek apakah ada data untuk ditampilkan
+    if not season_analysis.empty:
+        sns.barplot(data=season_analysis, x='season', y='cnt', palette="viridis", ax=ax)
+        ax.set_title("Rata-Rata Penggunaan per Musim")
+        ax.set_xlabel("")
+        ax.set_ylabel("Rata-Rata Jumlah Pengguna")
+        ax.set_xticks(range(len(season_filter)))
+        ax.set_xticklabels([season_labels[i] for i in sorted(season_filter)], rotation=45)
+    else:
+        # Jika tidak ada data, bersihkan plot dan tampilkan pesan
+        ax.clear()
+        ax.set_xticks([])
+        ax.set_yticks([])
+        ax.text(0.5, 0.5, "Tidak ada data untuk ditampilkan",
+                ha='center', va='center', transform=ax.transAxes)
+
+    plt.tight_layout()
     st.pyplot(fig)
 
 with right_column:
@@ -90,12 +102,24 @@ with right_column:
     st.subheader("🌤️ Penggunaan Berdasarkan Cuaca")
     weather_analysis = filtered_data.groupby('weathersit')['cnt'].mean().reset_index()
     fig, ax = plt.subplots(figsize=(10, 6))
-    sns.barplot(data=weather_analysis, x='weathersit', y='cnt', palette="coolwarm", ax=ax)
-    ax.set_title("Rata-Rata Penggunaan per Kondisi Cuaca")
-    ax.set_xlabel("")
-    ax.set_ylabel("Rata-Rata Jumlah Pengguna")
-    ax.set_xticks(range(len(weather_labels)))
-    ax.set_xticklabels([weather_labels[i] for i in sorted(weather_labels.keys())], rotation=45)
+
+    # Cek apakah ada data untuk ditampilkan
+    if not weather_analysis.empty:
+        sns.barplot(data=weather_analysis, x='weathersit', y='cnt', palette="coolwarm", ax=ax)
+        ax.set_title("Rata-Rata Penggunaan per Kondisi Cuaca")
+        ax.set_xlabel("")
+        ax.set_ylabel("Rata-Rata Jumlah Pengguna")
+        ax.set_xticks(range(len(weather_filter)))
+        ax.set_xticklabels([weather_labels[i] for i in sorted(weather_filter)], rotation=45)
+    else:
+        # Jika tidak ada data, bersihkan plot dan tampilkan pesan
+        ax.clear()
+        ax.set_xticks([])
+        ax.set_yticks([])
+        ax.text(0.5, 0.5, "Tidak ada data untuk ditampilkan",
+                ha='center', va='center', transform=ax.transAxes)
+
+    plt.tight_layout()
     st.pyplot(fig)
 
 # Tampilkan tabel ringkasan untuk musim dan cuaca
@@ -124,6 +148,7 @@ st.sidebar.download_button(
     file_name="bike_sharing_data.csv",
     mime="text/csv"
 )
+st.sidebar.markdown("[Sumber Data](https://www.kaggle.com/datasets/lakshmi25npathi/bike-sharing-dataset/code)")
 
 # Menghitung rata-rata penggunaan berdasarkan musim
 season_avg = filtered_data.groupby('season')['cnt'].mean().round(0)
