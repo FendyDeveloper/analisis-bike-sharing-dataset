@@ -80,7 +80,7 @@ with left_column:
 
     # Cek apakah ada data untuk ditampilkan
     if not season_analysis.empty:
-        sns.barplot(data=season_analysis, x='season', y='cnt', palette="viridis", ax=ax)
+        sns.barplot(data=season_analysis, x='season', y='cnt', palette="Blues_d", ax=ax)
         ax.set_title("Rata-Rata Penggunaan per Musim")
         ax.set_xlabel("")
         ax.set_ylabel("Rata-Rata Jumlah Pengguna")
@@ -105,7 +105,7 @@ with right_column:
 
     # Cek apakah ada data untuk ditampilkan
     if not weather_analysis.empty:
-        sns.barplot(data=weather_analysis, x='weathersit', y='cnt', palette="coolwarm", ax=ax)
+        sns.barplot(data=weather_analysis, x='weathersit', y='cnt', palette="Greens_r", ax=ax)
         ax.set_title("Rata-Rata Penggunaan per Kondisi Cuaca")
         ax.set_xlabel("")
         ax.set_ylabel("Rata-Rata Jumlah Pengguna")
